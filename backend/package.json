@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "rm -rf dist && cp -R src dist",
+    "start": "dode src/index.js",
     "dev": "node --watch src/index.js"
   },
   "type": "module",
