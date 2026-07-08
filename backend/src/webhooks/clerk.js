@@ -4,7 +4,7 @@ import { veryfyWebhook } from '@clerk/backend/webhooks'
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     try {
         
         const signingSecret = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
