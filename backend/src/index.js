@@ -33,5 +33,5 @@ app.listen(PORT, () => {
     console.log(`Server is up and running on port ${PORT}!`)
     connectDB();
 
-    if(process.env.NODE_ENV === 'production') job.start();
+    if (process.env.NODE_ENV === "production") job.start();
 });
