@@ -8,8 +8,11 @@ import path from 'path'
 import { connectDB } from './lib/db.js';
 import job from './lib/cron.js'
 import clerkWebhook from './webhooks/clerk.js'
+import authRoutes from './routes/auth.js'
+import messageRoutes from './routes/message.js'
+import { app, server } from './lib/socket.js'
 
-const app = express();
+
 const PORT = process.env.PORT
 const FRONTEND_URL = process.env.FRONTEND_URL;
 
@@ -26,6 +29,9 @@ app.get('/ping', (req, res) => {
     res.status(200).json({message: 'running'});
 })
 
+app.use('api/auth', authRoutes);
+app.use('api/messages', messageRoutes);
+
 if (fs.existsSync(publicDir)) {
     app.use(express.static(publicDir));
     app.get('/{*any}', (req, res, next) => {
@@ -33,7 +39,7 @@ if (fs.existsSync(publicDir)) {
     });
 }
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is up and running on port ${PORT}!`)
     connectDB();
 

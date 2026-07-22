@@ -14,10 +14,10 @@ const messageSchema = new mongoose.Schema({
     textContent : {
         type: String
     },
-    imgContent : {
+    image : {
         type: String
     },
-    videoContent : {
+    video : {
         type: String
     },
 }, {timestamps: true});
